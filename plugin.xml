@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android"   
+    id="cordova-plugin-zm-pay" 
+    version="0.0.1">
+    <name>ZmPay</name>
+    <description>Cordova Plugin ZmPay</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,ZmPay</keywords>
+    <repo>https://github.com/laborchu/cordova-plugin-zm-pay</repo>
+    <issue>https://github.com/laborchu/cordova-plugin-zm-pay/issues</issue>
+    
+    <js-module name="ZmPay" src="www/zm-pay.js">
+      <clobbers target="ZmPay"/>
+    </js-module>
+
+    <platform name="android">
+
+      <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="ZmPay">
+              <param name="android-package" value="org.apache.cordova.zmpay.ZmPay"/>
+              <param name="onload" value="true" />
+          </feature>
+      </config-file>
+      <framework src="src/android/zmPay.gradle" custom="true" type="gradleReference"/>
+      <source-file src="src/android/ZmPay.java" target-dir="src/org/apache/cordova/zmpay"/>
+      <source-file src="src/android/sdk/ZmOpenSDK.java" target-dir="src/net/zmskb/zmaggregatesdk"/>
+      <source-file src="src/android/sdk/ZmOpenSDKOrderListener.java" target-dir="src/net/zmskb/zmaggregatesdk"/>
+      <source-file src="src/android/sdk/inner/ZmOpenSDKInnerManager.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/가.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/갸.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/거.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/겨.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/고.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/교.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/구.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/규.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+      <source-file src="src/android/sdk/inner/그.java" target-dir="src/net/zmskb/zmaggregatesdk/inner"/>
+    </platform>
+
+    <platform name="ios">
+    
+        <config-file target="config.xml" parent="/*">
+          <feature name="ZmPay">
+              <param name="ios-package" value="ZmPay"/>
+              <param name="onload" value="true" />
+          </feature>
+        </config-file>
+
+        <framework src="src/ios/libs/zm_Pay.framework" custom="true"/>
+        <framework src="AFNetworking" type="podspec" spec="~> 3.2.1"/>
+
+        <source-file src="src/ios/ZmPay.m"/>
+        <source-file src="src/ios/ZmPay.h"/>
+    </platform>
+</plugin>
