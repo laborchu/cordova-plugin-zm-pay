@@ -33,7 +33,7 @@ public class ZmPay extends CordovaPlugin {
             String notifyUrl = jsonObject.getString("notifyUrl");
             String weChatMiniKey = jsonObject.getString("miniProID");
             String weChatAppKey = preferences.getString(Wechat.WXAPPID_PROPERTY_KEY, "");
-            ZmOpenSDK.getInstance().init(memberCode, agencyCode, certificateKey, true);
+            ZmOpenSDK.getInstance().init(memberCode, agencyCode, certificateKey, false);
 
             ZmOpenSDK.getInstance().with(cordova.getActivity()).setInnerParams(amount, outOrderNo, notifyUrl, new ZmOpenSDKOrderListener() {
                 @Override
