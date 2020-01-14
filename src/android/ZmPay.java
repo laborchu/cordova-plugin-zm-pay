@@ -40,7 +40,7 @@ public class ZmPay extends CordovaPlugin {
                 public void orderResult(int i, String s) {
                     callbackContext.success(s);
                 }
-            }).setWeChatPay(weChatAppKey, weChatMiniKey);
+            }).setWeChatPay(weChatAppKey, weChatMiniKey, 0);
         }
         return res;
     }
