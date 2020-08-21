@@ -25,6 +25,7 @@ public class ZmPay extends CordovaPlugin {
         boolean res = true;
         if ("pay".equals(action)) {
             JSONObject jsonObject = args.getJSONObject(0);
+            String channel = jsonObject.getString("channel");
             String memberCode = jsonObject.getString("merchantNum");
             String agencyCode = jsonObject.getString("organizationNum");
             String certificateKey = jsonObject.getString("encryptionKey");
@@ -35,12 +36,22 @@ public class ZmPay extends CordovaPlugin {
             String weChatAppKey = preferences.getString(Wechat.WXAPPID_PROPERTY_KEY, "");
             ZmOpenSDK.getInstance().init(memberCode, agencyCode, certificateKey, false);
 
-            ZmOpenSDK.getInstance().with(cordova.getActivity()).setInnerParams(amount, outOrderNo, notifyUrl, new ZmOpenSDKOrderListener() {
-                @Override
-                public void orderResult(int i, String s) {
-                    callbackContext.success(s);
-                }
-            }).setWeChatPay(weChatAppKey, weChatMiniKey, 0);
+            if ("alipay".equals(channel)) {
+                ZmOpenSDK.getInstance().with(cordova.getActivity()).setInnerParams(amount, outOrderNo, notifyUrl, new ZmOpenSDKOrderListener() {
+                    @Override
+                    public void orderResult(int i, String s) {
+                        callbackContext.success(s);
+                    }
+                }).setAliPay();
+            } else {
+                ZmOpenSDK.getInstance().with(cordova.getActivity()).setInnerParams(amount, outOrderNo, notifyUrl, new ZmOpenSDKOrderListener() {
+                    @Override
+                    public void orderResult(int i, String s) {
+                        callbackContext.success(s);
+                    }
+                }).setWeChatPay(weChatAppKey, weChatMiniKey, 0);
+            }
+
         }
         return res;
     }

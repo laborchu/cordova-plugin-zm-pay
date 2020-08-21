@@ -293,7 +293,7 @@ public class 규 implements 구 {
                }
 
                try {
-                  ZmOpenSDK.getInstance().getBuild().고.갸().startActivity(var13);
+                  ZmOpenSDK.getInstance().getBuild().고.갸().startActivity(var17);
                   break label78;
                } catch (Exception var4) {
                   var10001 = false;
