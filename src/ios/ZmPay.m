@@ -23,7 +23,7 @@
     NSString *notifyUrl = params[@"notifyUrl"];
     encryptionKey = [encryptionKey substringToIndex:16];
 
-    if([@"alipay" channel]){
+    if([@"alipay" isEqualToString:channel]){
         [zmPaySDK startAliPay:amount merchantNum:merchantNum organizationNum:organizationNum encryptionKey:encryptionKey orderNum:orderNum notifyUrl:notifyUrl isDebug:NO response:^(id _Nonnull response){
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:response];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
